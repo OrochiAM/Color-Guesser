@@ -56,6 +56,14 @@ input[type='color']::-webkit-color-swatch {
     border-radius: var(--border-radius);
     background-color: red;
     border: solid var(--border-width);
+    display: grid;
+    place-items: center;
+
+    p {
+      font-size: 40px;
+      color: #fff;
+      mix-blend-mode: difference;
+    }
   }
 
   .guess {
