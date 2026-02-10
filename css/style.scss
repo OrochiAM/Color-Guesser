@@ -98,7 +98,7 @@ input[type='color']::-webkit-color-swatch {
         color: #fff;
         mix-blend-mode: difference;
         pointer-events: none;
-        font-size: 40px;
+        font-size: 50px;
         visibility: hidden;
       }
     }
@@ -118,15 +118,29 @@ input[type='color']::-webkit-color-swatch {
       }
     }
 
-    button:hover {
-      color: #111;
-      background-color: #fff;
+    .guess-button-container {
+      button:hover {
+        color: #111;
+        background-color: #fff;
 
-      span {
-        position: absolute;
-        font-size: 30px;
-        top: 25px;
-        display: inline;
+        span {
+          position: absolute;
+          font-size: 30px;
+          top: 25px;
+          display: inline;
+        }
+      }
+
+      .checks {
+        display: flex;
+
+        .check {
+          width: 30px;
+          height: 30px;
+          background-color: red;
+          border-radius: var(--border-radius);
+          border: solid var(--border-width);
+        }
       }
     }
   }

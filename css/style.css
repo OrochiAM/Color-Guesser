@@ -93,7 +93,7 @@ input[type=color]::-webkit-color-swatch {
   color: #fff;
   mix-blend-mode: difference;
   pointer-events: none;
-  font-size: 40px;
+  font-size: 50px;
   visibility: hidden;
 }
 .game .guess button {
@@ -109,15 +109,25 @@ input[type=color]::-webkit-color-swatch {
 .game .guess button span {
   display: none;
 }
-.game .guess button:hover {
+.game .guess .guess-button-container button:hover {
   color: #111;
   background-color: #fff;
 }
-.game .guess button:hover span {
+.game .guess .guess-button-container button:hover span {
   position: absolute;
   font-size: 30px;
   top: 25px;
   display: inline;
+}
+.game .guess .guess-button-container .checks {
+  display: flex;
+}
+.game .guess .guess-button-container .checks .check {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: var(--border-radius);
+  border: solid var(--border-width);
 }
 .game .guess-color:hover p {
   visibility: visible;
