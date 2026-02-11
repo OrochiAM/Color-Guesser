@@ -83,7 +83,7 @@ input[type='color']::-webkit-color-swatch {
       p {
         color: #000;
         font-size: 20px;
-        margin-bottom: 1px;
+        margin-top: 5px;
       }
     }
 
@@ -133,13 +133,24 @@ input[type='color']::-webkit-color-swatch {
 
       .checks {
         display: flex;
+        gap: 5px;
+        justify-content: center;
+        margin-top: 5px;
 
         .check {
           width: 30px;
           height: 30px;
-          background-color: red;
+          background-color: #dbdbdb;
           border-radius: var(--border-radius);
-          border: solid var(--border-width);
+          border: solid 4px;
+          display: grid;
+          place-items: center;
+
+          p {
+            position: absolute;
+            bottom: 5px;
+            user-select: none;
+          }
         }
       }
     }
