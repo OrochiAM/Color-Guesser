@@ -3,6 +3,8 @@ const colorDiv = document.querySelector('.color');
 const colorHexParagraph = document.querySelector('.color-hex');
 const guessButton = document.querySelector('.color-btn');
 
+let turn = 0;
+
 const getRandom = (min, max) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -71,7 +73,27 @@ colorInput.addEventListener('input', () => {
   colorHexParagraph.innerText = guessedColor;
 });
 
+const checks = document.querySelectorAll('.check');
+
 guessButton.addEventListener('click', () => {
+  if (!turn) {
+    for (const check of checks) {
+      check.style.backgroundColor = '#dbdbdb';
+    }
+  }
+
+  turn++;
+
+  console.log(turn);
+
+  for (let i = 0; i < turn; i++) {
+    checks[i].style.backgroundColor = 'lightgreen';
+  }
+
+  if (turn == 5) {
+    turn = 0;
+  }
+
   colorDiv.innerHTML =
     '<p>' +
     Math.floor(
