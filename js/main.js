@@ -62,9 +62,11 @@ const checkComp = (rgbA, rgbB) => {
   return i < 0 ? 0 : Math.sqrt(i);
 };
 
-let colorToGuess = getRandomHexColor().toUpperCase();
+let colorToGuess;
 let guessedColor = '#000000';
-colorDiv.style.backgroundColor = colorToGuess;
+let colorComp;
+let firstRound = true;
+const checks = document.querySelectorAll('.check');
 
 console.log(colorToGuess);
 
@@ -73,33 +75,46 @@ colorInput.addEventListener('input', () => {
   colorHexParagraph.innerText = guessedColor;
 });
 
-const checks = document.querySelectorAll('.check');
+const clearChecks = () => {
+  for (const check of checks) {
+    check.style.backgroundColor = '#dbdbdb';
+    check.innerHTML = '<p>?</p>';
+  }
+};
+
+const newColorToGuess = () => {
+  colorToGuess = getRandomHexColor().toUpperCase();
+  colorDiv.style.backgroundColor = colorToGuess;
+};
+
+newColorToGuess();
+
+const getColorComp = () => {
+  return Math.floor(
+    100 -
+      (checkComp(hexToRgbArray(guessedColor), hexToRgbArray(colorToGuess)) %
+        100),
+  );
+};
 
 guessButton.addEventListener('click', () => {
-  if (!turn) {
-    for (const check of checks) {
-      check.style.backgroundColor = '#dbdbdb';
-    }
-  }
-
-  turn++;
-
-  console.log(turn);
-
-  for (let i = 0; i < turn; i++) {
-    checks[i].style.backgroundColor = 'lightgreen';
-  }
+  colorPercent = getColorComp();
 
   if (turn == 5) {
     turn = 0;
-  }
+    colorDiv.innerHTML = '';
+    newColorToGuess();
+    clearChecks();
+  } else {
+    checks[turn].style.backgroundColor = `hsl(${colorPercent}, 81%, 70%)`;
+    checks[turn].innerText = colorPercent >= 95 ? '✔' : 'X';
 
-  colorDiv.innerHTML =
-    '<p>' +
-    Math.floor(
-      100 -
-        (checkComp(hexToRgbArray(guessedColor), hexToRgbArray(colorToGuess)) %
-          100),
-    ) +
-    '%</p>';
+    colorDiv.innerHTML = '<p>' + getColorComp() + '%</p>';
+    if (colorPercent >= 95) {
+      colorDiv.innerHTML += '<p>CORRECT :)</p>';
+      turn = 4;
+    }
+
+    turn++;
+  }
 });

@@ -53,10 +53,11 @@ input[type=color]::-webkit-color-swatch {
   width: 350px;
   height: 350px;
   border-radius: var(--border-radius);
-  background-color: red;
   border: solid var(--border-width);
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .game .color p {
   font-size: 40px;
